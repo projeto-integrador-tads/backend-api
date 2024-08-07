@@ -62,75 +62,7 @@ class AuthController extends Controller
           "message"=>"user logged out"
         ]);
     }
-    /*
-    public function forgotPassword (Request $request)
-    { // esqueceu a senha
-        
-        //Buscando o usuário
-
-        // $validate = Validator::make($request->all(),[
-        //     'email' => 'required|string|email',
-        // ]);
-
-        
-        $request->validate(['email'=>'required|email']);
-        
-
-        try 
-        {
-
-            // A resposta deve receber o RESET_LINK_SENT
-            $response = Password::sendResetLink($request->only('email'));
-
-            switch ($response){
-                case Password::INVALID_USER:
-                    return response()->json(['message' => 'Usuário Inválido'], 200);
-                case Password::RESET_LINK_SENT:
-                    return response()->json(['message' => 'O E-mail foi enviado com sucesso'], 200);
-            }
-        } 
-        catch (Exception $e){
-            return back()->withInput()->with('error','Erro ao enviar o formulário');
-        }
-
-        
-
-    }
-
-    public function resetPassword (Request $request) 
-    { // resetar a senha 
-        
-        $request->validate([
-            'token' => 'required|string',
-            'email' => 'required|string|email',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        try {
-
-            $status = Password::reset(
-                $request->only('email', 'password','token'),
-                function ($user, $password) {
-                    $user->password = Hash::make($password);
-                    $user->setRememberToken(Str::random(60));
-                    $user->save();
-                }
-            );
     
-            switch ($status){
-                case Password::INVALID_USER:
-                    return response()->json(['message' => 'Usuário INVÁLIDO'], 200);
-                case Password::PASSWORD_RESET:
-                    return response()->json(['message' => 'Senha alterada com sucesso'], 200);
-            }
-
-        } catch (Exception $e ){
-            return back()->withInput()->with('error','Erro ao redefinir a senha');
-        }
-
-    
-    }
-    */
     
 }
 
